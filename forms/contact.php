@@ -20,7 +20,7 @@ try {
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
     $mail->Username   = 'fabioigrejateste@gmail.com';
-    $mail->Password   = 'kqyo qesy jkxc tfzx';  // Use app password for Gmail
+    $mail->Password   = 'pjze tjfz kvaw uacc';  // Use app password for Gmail
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
 
