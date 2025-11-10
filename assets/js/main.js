@@ -73,12 +73,14 @@
    * Animation on scroll function and init
    */
   function aosInit() {
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: false,
-      mirror: false,
-    });
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: false,
+        mirror: false,
+      });
+    }
   }
   window.addEventListener('load', aosInit);
 
@@ -89,13 +91,15 @@
   if (selectTyped) {
     let typed_strings = selectTyped.getAttribute('data-typed-items');
     typed_strings = typed_strings.split(',');
-    new Typed('.typed', {
-      strings: typed_strings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
-    });
+    if (typeof Typed !== 'undefined') {
+      new Typed('.typed', {
+        strings: typed_strings,
+        loop: true,
+        typeSpeed: 100,
+        backSpeed: 50,
+        backDelay: 2000
+      });
+    }
   }
 
   /**
