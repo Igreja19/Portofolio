@@ -17,7 +17,7 @@
   /**
    * Hide mobile nav on same-page/hash links
    */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
+  document.querySelectorAll('#navbarNav a').forEach(navmenu => {
     navmenu.addEventListener('click', () => {
       if (document.querySelector('.header-show')) {
         headerToggle();
@@ -29,7 +29,7 @@
   /**
    * Toggle mobile nav dropdowns
    */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
+  document.querySelectorAll('.navbar-nav .toggle-dropdown').forEach(navmenu => {
     navmenu.addEventListener('click', function(e) {
       e.preventDefault();
       this.parentNode.classList.toggle('active');
@@ -73,7 +73,7 @@
    * Animation on scroll function and init
    */
   function aosInit() {
-    if (typeof AOS !== 'undefined') {
+    if(typeof AOS !== 'undefined') {
       AOS.init({
         duration: 800,
         easing: 'ease-in-out',
@@ -82,25 +82,47 @@
       });
     }
   }
-  window.addEventListener('load', aosInit);
+  document.addEventListener('DOMContentLoaded', aosInit);
 
   /**
-   * Init typed.js
-   */
-  const selectTyped = document.querySelector('.typed');
-  if (selectTyped) {
-    let typed_strings = selectTyped.getAttribute('data-typed-items');
-    typed_strings = typed_strings.split(',');
-    if (typeof Typed !== 'undefined') {
-      new Typed('.typed', {
-        strings: typed_strings,
-        loop: true,
-        typeSpeed: 100,
-        backSpeed: 50,
-        backDelay: 2000
-      });
-    }
-  }
+   * Init typed.js
+   */
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('Initializing Typed.js...');
+    const selectTyped = document.querySelector('.typed');
+    
+    if (selectTyped) {
+      console.log('Found .typed element');
+      let typed_strings = selectTyped.getAttribute('data-typed-items');
+      
+      if (typed_strings) {
+        console.log('data-typed-items:', typed_strings);
+        typed_strings = typed_strings.split(',');
+        
+        if (typeof Typed !== 'undefined') {
+          console.log('Typed library loaded successfully');
+          try {
+            new Typed('.typed', {
+              strings: typed_strings,
+              loop: true,
+              typeSpeed: 100,
+              backSpeed: 50,
+              backDelay: 2000
+            });
+            console.log('Typed.js initialized successfully');
+          } catch (error) {
+            console.error('Error initializing Typed.js:', error);
+          }
+        } else {
+          console.error('Typed is undefined - library not loaded');
+        }
+      } else {
+        console.error('data-typed-items attribute not found');
+      }
+    } else {
+      console.error('Element with class "typed" not found');
+    }
+  });
 
   /**
    * Initiate Pure Counter
