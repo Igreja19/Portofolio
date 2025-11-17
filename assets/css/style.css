@@ -1035,3 +1035,12 @@ section,
   border-color: var(--btn-bg-hover) !important;
   color: var(--btn-text-hover) !important;
 }
+
+/* Correção para o formulário de contacto (Formspree)
+  Esconde as mensagens de "loading/error/sent" que já não são precisas.
+*/
+#contact form .loading,
+#contact form .error-message,
+#contact form .sent-message {
+  display: none;
+}
